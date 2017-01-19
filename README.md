@@ -16,7 +16,7 @@
 
 1、 连接服务器
 ```java
-void TalkieManager.connect(String appid, String userid, new TalkieClient.Connectcallback(){
+void TalkieManager.connect(String appid, String userid, new TalkieClient.ConnectCallback(){
       /**
        * 对讲服务器连接成功
        * @param openid 
@@ -37,9 +37,9 @@ void TalkieManager.connect(String appid, String userid, new TalkieClient.Connect
     });
 ```
 
-2、 进入房间online
+2、 进入房间
 ```java
-void TalkieManager.join(new TalkieClient.Connectcallback(){
+void TalkieManager.online(new TalkieClient.onlineCallback(){
       /**
        * 进入房间成功
        */
@@ -66,10 +66,9 @@ void TalkieManager.offline();
 
 4、 请求发言reqSpeak
 ```java
-void TalkieManager.reqSpeak(new TalkieClient.Connectcallback(){
+void TalkieManager.reqSpeak(new TalkieClient.ReqSpeakCallback(){
       /**
        * 请求发言成功
-       * @param openid 
        */
       @Override
       public void onSuccess() {
@@ -99,7 +98,7 @@ void TalkieManager.location(float lat, float lon, int speed, int direction)
 
 7、 其它用户开始发言广播回调
 ```java
-void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakCallback(){
+void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakListener(){
       /**
        * 对讲服务器连接成功
        * @param openid 
@@ -113,7 +112,7 @@ void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakCallbac
 
 8、 其它用户结束发言广播
 ```java
-void TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakCallback(){
+void TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakListener(){
       /**
        * 对讲服务器连接成功
        * @param openid 
