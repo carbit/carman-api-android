@@ -16,67 +16,134 @@
 
 1、 连接服务器
 ```java
-TalkieManager.connect(String appid, String userid, new TalkieClient.Connectcallback(){
-  /**
-   * 对讲服务器连接成功
-   * @param openid 
-   */
-  @Override
-  public void onSuccess(String openid) {
-  
-  }
-  
-  /**
-   * 对讲服务器连接失败
-   * @param errorCode 错误码，查看错误码对应的注释
-   */
-  @Override
-  public void onError(TalkieClient.ErrorCode errorCode) {
-  
-  }
-});
+void TalkieManager.connect(String appid, String userid, new TalkieClient.Connectcallback(){
+      /**
+       * 对讲服务器连接成功
+       * @param openid 
+       */
+      @Override
+      public void onSuccess(String openid) {
+
+      }
+
+      /**
+       * 对讲服务器连接失败
+       * @param errorCode 错误码，查看错误码对应的注释
+       */
+      @Override
+      public void onError(TalkieClient.ErrorCode errorCode) {
+
+      }
+    });
 ```
 
-2、 进入房间join
+2、 进入房间online
 ```java
-TalkieManager.join();
+void TalkieManager.join(new TalkieClient.Connectcallback(){
+      /**
+       * 进入房间成功
+       */
+      @Override
+      public void onSuccess() {
+
+      }
+
+      /**
+       * 进入房间失败
+       * @param errorCode 错误码，查看错误码对应的注释
+       */
+      @Override
+      public void onError(TalkieClient.ErrorCode errorCode) {
+
+      }
+    });
 ```
 
 3、 离开房间offline
 ```java
-TalkieManager.offline();
+void TalkieManager.offline();
 ```
 
 4、 请求发言reqSpeak
 ```java
-TalkieManager.reqSpeak()
+void TalkieManager.reqSpeak(new TalkieClient.Connectcallback(){
+      /**
+       * 请求发言成功
+       * @param openid 
+       */
+      @Override
+      public void onSuccess() {
+
+      }
+
+      /**
+       * 请求发言失败
+       * @param errorCode 错误码，查看错误码对应的注释
+       */
+      @Override
+      public void onError(TalkieClient.ErrorCode errorCode) {
+
+      }
+    })
 ```
 
 5、 结束发言stopSpeak
 ```java
-TalkieManager.stopSpeak()
+void TalkieManager.stopSpeak()
 ```
 
 6、 更新位置location
 ```java
-TalkieManager.location(float lat, float lon, int speed, int direction)
+void TalkieManager.location(float lat, float lon, int speed, int direction)
 ```
 
-7、 其它用户开始发言广播回调startSpeakCallBack
+7、 其它用户开始发言广播回调
 ```java
-TalkieManager.setStartSpeakCallback(new TalkieClient.StartSpeakCallback(){
+void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakCallback(){
+      /**
+       * 对讲服务器连接成功
+       * @param openid 
+       */
+      @Override
+      public void onStartSpeak(String openid) {
 
-});
+      }
+    });
 ```
 
-8、 其它用户结束发言广播stopSpeakBcst
+8、 其它用户结束发言广播
 ```java
-TalkieManager.setStopSpeaCallback(new TalkieClient.StopSpeakCallback(){
+void TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakCallback(){
+      /**
+       * 对讲服务器连接成功
+       * @param openid 
+       */
+      @Override
+      public void onStopSpeak(String openid) {
 
-});
+      }
+    });
 ```
 
-9、 其它用户位置变更广播locationBcst
+9、 其它用户位置变更广播
 ```java
-TalkieManager.setLocationCallBack();
+void TalkieManager.setOtherLocationListener(new TalkieClient.LocationListener(){
+      /**
+       * 对讲服务器连接成功
+       * @param openid 
+       */
+      @Override
+      public void onLocationListener(String openid, float lat, float lon, int speed, int direction) {
+
+      }
+    });
+```
+
+10、 连接状态回调
+```java
+void TalkieManager.setConnectStateListener(new TalkieClient.ConnectStateListener(){
+      @Override
+      public void onStateChange(int state){
+      }
+    });
 ```
