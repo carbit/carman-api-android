@@ -53,7 +53,7 @@ void TalkieManager.connect(String appid, String userid, new TalkieClient.Connect
 ```
 **Tips：业务系统需要自己唯护userid和openid的对应关系，本文档中的其它方法中会使用openid作为用户的唯一标识**
 
-2、 进入房间
+2、 进入频道
 ```java
 void TalkieManager.online(new TalkieClient.onlineCallback(){
       /**
@@ -74,11 +74,13 @@ void TalkieManager.online(new TalkieClient.onlineCallback(){
       }
     });
 ```
+**Tips：只有进入频道后才能请求发言、更新位置、收到其它用户的发言和位置**
 
-3、 离开房间
+3、 离开频道
 ```java
 void TalkieManager.offline();
 ```
+**Tips：离开频道后不能请求发言、更新位置、收到其它用户的发言和位置**
 
 4、 请求发言
 ```java
