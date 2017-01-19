@@ -15,8 +15,12 @@
 
 在AndroidManifest.xml文件中加入下面内容：
 ```java
+   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+   <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
    <uses-permission android:name="android.permission.INTERNET"/>
-    
+   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
    <service android:name="net.easyconn.sdk.talkie.ImService"
             android:enabled="true"
             android:exported="true" />
