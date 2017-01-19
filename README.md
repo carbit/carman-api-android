@@ -15,7 +15,7 @@
 
 在AndroidManifest.xml文件中加入下面内容：
 ```java
-    <uses-permission android:name="android.permission.INTERNET"/>
+   <uses-permission android:name="android.permission.INTERNET"/>
     
    <service android:name="net.easyconn.sdk.talkie.ImService"
             android:enabled="true"
