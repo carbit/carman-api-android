@@ -28,14 +28,24 @@
 
 <h2 id="SDK接入步骤">二、SDK接入步骤</h2>
 
-1、 连接服务器
+1、 初始化
+```java
+TalkieManager.init(activity);
+```
+
+2、 摧毁服务
+```java
+TalkieManager.destroy();
+```
+
+1、 用户授权
 ```java
 /**
  * 对讲服务器连接
- * @param appid  应用唯一标识
- * @param userid 业务系统中的用户唯一标识
+ * @param appid(String)  应用唯一标识
+ * @param userid(String) 业务系统中的用户唯一标识
  */
-void TalkieManager.connect(String appid, String userid, new TalkieClient.ConnectCallback(){
+TalkieManager.login(appid, userid, new TalkieClient.ConnectCallback(){
       /**
        * 对讲服务器连接成功
        * @param openid 对讲服务器为授权用户分配的唯一标识
@@ -59,7 +69,7 @@ void TalkieManager.connect(String appid, String userid, new TalkieClient.Connect
 
 2、 进入频道
 ```java
-void TalkieManager.online(new TalkieClient.onlineCallback(){
+TalkieManager.online(new TalkieClient.OnlineCallback(){
       /**
        * 进入房间成功
        */
@@ -82,13 +92,13 @@ void TalkieManager.online(new TalkieClient.onlineCallback(){
 
 3、 离开频道
 ```java
-void TalkieManager.offline();
+TalkieManager.offline();
 ```
 **Tips：离开频道后不能请求发言、更新位置、收到其它用户的发言和位置**
 
 4、 请求发言
 ```java
-void TalkieManager.reqSpeak(new TalkieClient.ReqSpeakCallback(){
+TalkieManager.reqSpeak(new TalkieClient.ReqSpeakCallback(){
       /**
        * 请求发言成功
        */
@@ -105,29 +115,29 @@ void TalkieManager.reqSpeak(new TalkieClient.ReqSpeakCallback(){
       public void onError(TalkieClient.ErrorCode errorCode) {
 
       }
-    })
+    });
 ```
 
 5、 结束发言
 ```java
-void TalkieManager.stopSpeak()
+TalkieManager.stopSpeak();
 ```
 
 6、 更新位置
 ```java
 /**
  * 更新位置
- * @param lat 纬度
- * @param lon 经度
- * @param speed 速度
- * @param direction 方向
+ * @param lat(float) 纬度
+ * @param lon(float) 经度
+ * @param speed(int) 速度
+ * @param direction(int) 方向
  */
-void TalkieManager.location(float lat, float lon, int speed, int direction)
+TalkieManager.location(lat, lon, speed, direction);
 ```
 
 7、 其它用户开始发言事件
 ```java
-void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakListener(){
+TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakListener(){
       /**
        * 其它用户开始发言事件
        * @param openid 授权用户唯一标识
@@ -141,7 +151,7 @@ void TalkieManager.setOtherStartSpeakListener(new TalkieClient.StartSpeakListene
 
 8、 其它用户结束发言事件
 ```java
-void TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakListener(){
+TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakListener(){
       /**
        * 其它用户结束发言事件
        * @param openid 授权用户唯一标识
@@ -155,7 +165,7 @@ void TalkieManager.setOtherStopSpeakListener(new TalkieClient.StopSpeakListener(
 
 9、 其它用户位置变更事件
 ```java
-void TalkieManager.setOtherLocationListener(new TalkieClient.LocationListener(){
+TalkieManager.setOtherLocationListener(new TalkieClient.LocationListener(){
       /**
        * 其它用户位置变更事件
        * @param openid 授权用户唯一标识
@@ -173,7 +183,7 @@ void TalkieManager.setOtherLocationListener(new TalkieClient.LocationListener(){
 
 10、 连接状态变更事件
 ```java
-void TalkieManager.setConnectStateListener(new TalkieClient.ConnectStateListener(){
+TalkieManager.setConnectStateListener(new TalkieClient.ConnectStateListener(){
       /**
        * 连接状态变更事件
        * @param connectionStatus 状态变更
